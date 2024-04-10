@@ -1,0 +1,27 @@
+{
+	"info": {
+		"_postman_id": "8d6e9495-6a59-4976-80df-289934bc8e83",
+		"name": "Dev Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34166877"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/WeatherForecast",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"WeatherForecast"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
