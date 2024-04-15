@@ -1,0 +1,32 @@
+[
+    {
+        "date": "2024-04-12",
+        "temperatureC": -7,
+        "temperatureF": 20,
+        "summary": "Cool from DB"
+    },
+    {
+        "date": "2024-04-13",
+        "temperatureC": 10,
+        "temperatureF": 49,
+        "summary": "Warm from DB"
+    },
+    {
+        "date": "2024-04-14",
+        "temperatureC": 20,
+        "temperatureF": 68,
+        "summary": "Balmy from DB"
+    },
+    {
+        "date": "2024-04-15",
+        "temperatureC": 25,
+        "temperatureF": 76,
+        "summary": "Hot from DB"
+    },
+    {
+        "date": "2024-04-16",
+        "temperatureC": 35,
+        "temperatureF": 94,
+        "summary": "Scorching from DB"
+    }
+]

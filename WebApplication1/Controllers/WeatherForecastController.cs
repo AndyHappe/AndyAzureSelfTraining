@@ -12,15 +12,25 @@ namespace WebApplication1.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ICosmosWeatherService _weatherService;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        
+        
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, ICosmosWeatherService weatherService)
         {
             _logger = logger;
+            _weatherService = weatherService;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
+            var result = _weatherService.GetAll();
+            return result.OrderBy(x => x.Date);
+        }
+
+        private IEnumerable<WeatherForecast> GetMockItems()
+        { 
             return Enumerable.Range(1,5).Select(index => new WeatherForecast
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
@@ -28,6 +38,8 @@ namespace WebApplication1.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+        
         }
+
     }
 }
