@@ -5,9 +5,6 @@ using WebApplication1.Controllers;
 using Azure.Data.AppConfiguration;
 
 string? azureConfigServiceConnectionString = Environment.GetEnvironmentVariable("AZURE_CONF_SERVICE_CONN_STRING");
-
-azureConfigServiceConnectionString = "Endpoint=https://andywebapp1-appconfig.azconfig.io;Id=FOKu;Secret=Ak4geJz9JubrR0wdllQzO8OFTH3hoyuYvnqMnMfyPZc=";
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddAzureAppConfiguration(options =>
@@ -18,7 +15,8 @@ builder.Configuration.AddAzureAppConfiguration(options =>
     })
 );
 
-Configuration configuration = GetConfiguration(builder.Configuration);
+var configClient = new ConfigurationClient(azureConfigServiceConnectionString);
+Configuration configuration = new(configClient);
 
 // Add services to the container.
 builder.Services.AddSingleton<ICosmosWeatherService>(new CosmosWeatherService(configuration));
@@ -42,11 +40,3 @@ app.UseAuthorization();
 app.MapControllers();
 app.Run();
 
-static Configuration GetConfiguration(IConfigurationRoot config)
-{ 
-    var databaseId = config["Database"];
-    var containerId = config["Container"];
-    var endpointUri = config["EndpointUri"];
-    var primaryKey = config["PrimaryKey"];
-    return new Configuration(databaseId,containerId,endpointUri,primaryKey);
-}
